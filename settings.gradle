@@ -1,0 +1,4 @@
+include ':tuikit-live'
+include ':tuikit'
+include ':app'
+rootProject.name = "TXChat"

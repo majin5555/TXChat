@@ -1,0 +1,87 @@
+plugins {
+    id 'com.android.application'
+}
+apply plugin: 'com.huawei.agconnect'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "cn.wlsk.txchat"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:multidex:1.0.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.okhttp3:okhttp:3.2.0'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // Optional, if you use support library fragments:
+    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.2'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.2'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.2'
+
+    // google firebase
+    implementation('com.google.firebase:firebase-core:17.0.0')
+    // google 云消息传递
+    implementation('com.google.firebase:firebase-messaging:19.0.1')
+    // tpns推送
+    // 小米
+    implementation "com.tencent.tpns:xiaomi:1.2.1.2-release"
+    // 魅族
+    implementation "com.tencent.tpns:meizu:1.2.1.2-release"
+    implementation "com.tencent.tpns:oppo:1.2.1.2-release"
+    // vivo
+    implementation "com.tencent.tpns:vivo:1.2.1.2-release"
+    // 华为
+    implementation 'com.tencent.tpns:huawei:1.2.1.2-release'
+    implementation 'com.huawei.hms:push:5.0.2.300'
+
+    // bugly sdk
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
+
+    /*腾讯云  */
+    implementation project(':tuikit')
+    implementation project(':tuikit-live')
+
+
+}
